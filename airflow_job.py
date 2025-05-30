@@ -12,7 +12,7 @@ default_args = {
     'depends_on_past': False,
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
-    'start_date': datetime(2025, 5, 31),
+    'start_date': datetime(2025, 5, 30),
 }
 
 # Define the DAG
