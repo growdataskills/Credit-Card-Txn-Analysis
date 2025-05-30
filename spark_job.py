@@ -93,8 +93,9 @@ if __name__ == "__main__":
     # Write to BigQuery
     enriched_df.write.format("bigquery") \
         .option("table", BQ_TRANSACTIONS_TABLE) \
-        .option("writeMethod", "direct") \
-        .mode("append") \
+        .option("temporaryGcsBucket", "bq-temp-gds") \
+        .option("createDisposition", "CREATE_IF_NEEDED") \
+        .option("writeDisposition", "WRITE_APPEND") \
         .save()
 
     print("Advanced Transactions Processing Completed!")
