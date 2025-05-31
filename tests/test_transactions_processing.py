@@ -2,6 +2,11 @@
 # pip install pytest
 # pip install pyspark
 
+import os
+import sys
+os.environ["PYSPARK_PYTHON"] = sys.executable
+os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
+
 import pytest
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
@@ -67,6 +72,7 @@ class TestTransactionProcessing:
         rows = {r['transaction_id']: r.asDict() for r in df.collect()}
         assert rows['T002']['high_risk'] is True
         assert rows['T002']['fraud_risk_level']=='Critical'
+        # assert rows['T002']['fraud_risk_level']=='High'
         assert rows['T001']['updated_reward_points']==4512
         assert rows['T003']['updated_reward_points']==8008
 
