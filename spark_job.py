@@ -18,7 +18,7 @@ def process_transactions(
     """
     # 1) Validations
     df = trans_df.filter(
-        (col("transaction_amount") >= 0) &
+        (col("transaction_amount") > 0) &
         (col("transaction_status").isin("SUCCESS", "FAILED", "PENDING")) &
         col("cardholder_id").isNotNull() &
         col("merchant_id").isNotNull()
